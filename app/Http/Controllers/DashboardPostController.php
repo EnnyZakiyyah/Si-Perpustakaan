@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Katalog;
 use App\Models\Category;
 use Illuminate\Support\Str;
@@ -18,8 +19,12 @@ class DashboardPostController extends Controller
     public function index()
     {
         return view('dashboard.sirkulasi.penelusuran-katalog.index', [
-            'katalogs' => Katalog::where('author_id', auth()->user()->id)->get() //KALAU MAU PANGGIL BERDASARKAN USER UNTUK ISI DASHBOARD, GANTI USER ID. UNTUK SEMPENTARA PAKAI AUTHOR_IDA DULU
+            'katalogs' => Katalog::all() 
         ]);
+        //====NGASIH KONDISI DIMANA AKAN MENAMPILKAN POST BERDASARKAN AUTHOR====//
+        // return view('dashboard.sirkulasi.penelusuran-katalog.index', [
+        //     'katalogs' => Katalog::where('name', auth()->user()->id)->get() //KALAU MAU PANGGIL BERDASARKAN USER UNTUK ISI DASHBOARD, GANTI USER ID. UNTUK SEMPENTARA PAKAI AUTHOR_IDA DULU
+        // ]);
     }
 
     /**
@@ -32,7 +37,7 @@ class DashboardPostController extends Controller
         return view('dashboard.sirkulasi.penelusuran-katalog.create', [
             'categories' => Category::all()
         ]);
-        dd('categories');
+        // dd('categories');
     }
 
     /**
@@ -43,6 +48,7 @@ class DashboardPostController extends Controller
      */
     public function store(Request $request)
     {
+        
         $validateData = $request->validate([
             'title' => 'required|max:255',
             'slug' => 'unique:katalogs',
@@ -57,9 +63,10 @@ class DashboardPostController extends Controller
             'jumlah' => 'required',
             'bahasa' => '',
             'lokasi' => '',
+            // 'author_id' => ''
         ]);
 
-        $validateData['user_id'] = auth()->user()->id;
+        $validateData['author_id'] = auth()->user()->id;    //INI JUGA SAMA. SEMENTARA PAKAI AUTHOR DULU. KALAU MAU GANTI USER ID, NANTI BISA.
         $validateData['excerpt'] = Str::limit(strip_tags($request->body), 200);
 
         Katalog::create($validateData);

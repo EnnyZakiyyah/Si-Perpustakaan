@@ -17,7 +17,9 @@ class CreateKatalogsTable extends Migration
             $table->id();
             $table->foreignId('category_id');
             $table->foreignId('author_id');
+            // $table->foreignId('user_id');
             $table->string('title');
+            $table->string('penulis');
             $table->string('edisi');
             $table->string('isbn');
             $table->string('penerbit');

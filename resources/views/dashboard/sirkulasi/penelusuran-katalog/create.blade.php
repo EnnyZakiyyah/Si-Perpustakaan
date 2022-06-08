@@ -25,7 +25,7 @@
                     <div class="mb-3 row">
                         <label for="slug" class="col-md-2 col-form-label">Slug</label>
                         <div class="col-md-10">
-                          <input class="form-control @error('slug') is-invalid @enderror" type="text" name="slug" id="slug" value="{{ old('slug') }}"/>
+                          <input class="form-control @error('slug') is-invalid @enderror" type="text" name="slug" id="slug" value="{{ old('slug') }}" disabled/>
                         @error('slug')
                           <div class="invalid-feedback">
                               {{ $message }}
@@ -109,11 +109,11 @@
                       <div class="mb-3 row">
                         <label for="body" class="col-md-2 col-form-label">Sinopsis</label>
                         <div class="col-md-10">
-                        @error('body')
-                        <p class="text-danger">{{ $message }}</p>
-                        @enderror
                         </div>
                         <div class="col-md-10">
+                          @error('body')
+                          <p class="text-danger">{{ $message }}</p>
+                          @enderror
                             <input id="body" type="hidden" name="body" value="{{ old('body') }}">
                             <trix-editor input="body"></trix-editor>
                       </div>

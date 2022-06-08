@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Author;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
@@ -43,8 +44,13 @@ class Katalog extends Model
 
     public function author()
     {
-        return $this->belongsTo(Author::class, 'author_id');
+        return $this->belongsTo(Author::class);
     }
+
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
 
     public function getRouteKeyName()
     {
