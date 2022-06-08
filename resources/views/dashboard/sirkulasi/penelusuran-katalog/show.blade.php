@@ -85,7 +85,11 @@
                 <div class="py-3">
                     <a href="/dashboard/sirkulasi/penelusuran-katalog" class="btn btn-info"><i class="feather icon-arrow-left" style="color: white"></i>Back</a>
                     <a href="" class="btn btn-warning"><i class="feather icon-edit" style="color: white"></i></i>Edit</a>
-                    <a href="" class="btn btn-danger"><i class="feather icon-trash" style="color: white"></i>Delete</a>
+                    <form action="/dashboard/sirkulasi/penelusuran-katalog/{{ $katalog->slug }}" method="POST" class="d-inline">
+                        @method('delete')
+                        @csrf
+                        <button class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="feather icon-x-circle" style="color: white"></i></button>
+                    </form>
                 </div>
             </div>
         </div>

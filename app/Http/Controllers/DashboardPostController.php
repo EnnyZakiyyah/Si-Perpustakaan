@@ -18,13 +18,13 @@ class DashboardPostController extends Controller
      */
     public function index()
     {
-        return view('dashboard.sirkulasi.penelusuran-katalog.index', [
-            'katalogs' => Katalog::all() 
-        ]);
-        //====NGASIH KONDISI DIMANA AKAN MENAMPILKAN POST BERDASARKAN AUTHOR====//
         // return view('dashboard.sirkulasi.penelusuran-katalog.index', [
-        //     'katalogs' => Katalog::where('name', auth()->user()->id)->get() //KALAU MAU PANGGIL BERDASARKAN USER UNTUK ISI DASHBOARD, GANTI USER ID. UNTUK SEMPENTARA PAKAI AUTHOR_IDA DULU
+        //     'katalogs' => Katalog::all() 
         // ]);
+        //====NGASIH KONDISI DIMANA AKAN MENAMPILKAN POST BERDASARKAN AUTHOR====//
+        return view('dashboard.sirkulasi.penelusuran-katalog.index', [
+            'katalogs' => Katalog::where('author_id', auth()->user()->id)->get() //KALAU MAU PANGGIL BERDASARKAN USER UNTUK ISI DASHBOARD, GANTI USER ID. UNTUK SEMPENTARA PAKAI AUTHOR_IDA DULU
+        ]);
     }
 
     /**
@@ -99,7 +99,11 @@ class DashboardPostController extends Controller
      */
     public function edit(Katalog $katalog)
     {
-        //
+        return view('dashboard.sirkulasi.penelusuran-katalog.edit', [
+            'katalog' => $katalog,
+            'categories' => Category::all()
+        ]);
+
     }
 
     /**
@@ -122,7 +126,8 @@ class DashboardPostController extends Controller
      */
     public function destroy(Katalog $katalog)
     {
-        //
+        Katalog::destroy($katalog->id);
+        return redirect('/dashboard/sirkulasi/penelusuran-katalog')->with('success', 'Katalog has been deleted!');
     }
 
     public function checkSlug(Request $request)
@@ -130,7 +135,6 @@ class DashboardPostController extends Controller
         $slug = SlugService::createSlug(Katalog::class, 'slug', $request->title);
         return response()->json(['slug' => $slug]);
         // dd($slug);
-
 
     }
 }
