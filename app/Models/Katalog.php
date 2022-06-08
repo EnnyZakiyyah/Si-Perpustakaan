@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Author;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -10,12 +11,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Katalog extends Model 
 {
     use HasFactory, Sluggable;
-
-    // protected $fillable = [
-    //     'title', 
-    //     'excerpt',
-    //     'body'
-    // ];
 
     protected $guarded = ['id'];
     protected $with = ['category', 'author'];
@@ -48,7 +43,7 @@ class Katalog extends Model
 
     public function author()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Author::class, 'author_id');
     }
 
     public function getRouteKeyName()

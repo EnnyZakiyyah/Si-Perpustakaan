@@ -5,6 +5,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\KatalogController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardPostController;
+use App\Models\Author;
+use App\Models\Katalog;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 /*
@@ -81,10 +83,17 @@ Route::get('/home/koleksi-digital/koleksi-digital/detil', function () {
 // });
 
 // Kategori Author
-// Route::get('/authors/{author:username}', function (User $author) {
+// Route::get('/authors/{author:username}', function (Katalog $author) {
 //     return view('home.sirkulasi.penelusuran-katalog', [
 //         'title' => "Katalog By Kategori $author->name",
 //         'katalogs' => $author->katalogs->load('category', 'author')
+//     ]);
+// });
+
+// Route::get('sirkulasi/penelusuran-katalog/authors/{author:username}', function (Author $author) {
+//     return view('home.sirkulasi.penelusuran-katalog', [
+//         'title' => "Katalog By Author",
+//         'katalogs' => $author->katalogs
 //     ]);
 // });
 

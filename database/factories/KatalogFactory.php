@@ -29,7 +29,7 @@ class KatalogFactory extends Factory
             'body' => collect($this->faker->paragraphs(mt_rand(1,2)))
                         ->map(fn($p) => "<p>$p</p>")
                         ->implode(''),
-            'user_id' => mt_rand(1,3),
+            'author_id' => mt_rand(1,2),
             'category_id' => mt_rand(1,2)
         ];
     }

@@ -18,7 +18,7 @@ class DashboardPostController extends Controller
     public function index()
     {
         return view('dashboard.sirkulasi.penelusuran-katalog.index', [
-            'katalogs' => Katalog::where('user_id', auth()->user()->id)->get()
+            'katalogs' => Katalog::where('author_id', auth()->user()->id)->get() //KALAU MAU PANGGIL BERDASARKAN USER UNTUK ISI DASHBOARD, GANTI USER ID. UNTUK SEMPENTARA PAKAI AUTHOR_IDA DULU
         ]);
     }
 

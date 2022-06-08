@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Category;
 use App\Models\Katalog;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class KatalogController extends Controller
@@ -18,7 +18,7 @@ class KatalogController extends Controller
         }
 
         if (request('author')) {
-            $author = User::firstWhere('username', request('author'));
+            $author = Author::firstWhere('username', request('author'));
             $title = ' by '. $author->name;
         }
 

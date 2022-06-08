@@ -60,7 +60,7 @@
                 </div>
                   <div class="card-body">
                     <h6 class="pt-5">{{ $katalog->title }}</h6>
-                    <p>by <a href="/home/sirkulasi/penelusuran-katalog?author={{ $katalog->author->username }}" class="text-primary" style="font-size: 13px;">{{ $katalog->author->name }}</a></p>
+                    <p>by <a href="/home/sirkulasi/penelusuran-katalog/?author={{ $katalog->author->username }}" class="text-primary" style="font-size: 13px;">{{ $katalog->author->name }}</a></p>
                     <p style="font-size: 13px;">2016</p>
                     <p>{!! $katalog->excerpt !!}
                     <a href="/home/sirkulasi/penelusuran-katalog/{{ $katalog->slug }}" class="text-primary">Read More...</a></p> 
